@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="223dp"
+        android:layout_height="49dp"
+        android:fontFamily="@font/aclonica"
+        android:text="Online Qari"
+        android:textAlignment="center"
+        android:textColor="#009688"
+        android:textSize="35sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.129" />
+
+    <Button
+        android:id="@+id/srbutton"
+        android:layout_width="258dp"
+        android:layout_height="66dp"
+        android:layout_marginTop="180dp"
+        android:background="#31673AB7"
+        android:fontFamily="@font/aclonica"
+        android:onClick="studentBtn"
+        android:text="Student Registration"
+        android:textAlignment="center"
+        android:textColor="#009688"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.568"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <Button
+        android:id="@+id/trbutton"
+        android:layout_width="258dp"
+        android:layout_height="66dp"
+        android:background="#31673AB7"
+        android:fontFamily="@font/aclonica"
+        android:onClick="teacherBtn"
+        android:text="Teacher Registration"
+        android:textAlignment="center"
+        android:textColor="#009688"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.568"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/srbutton"
+        app:layout_constraintVertical_bias="0.216" />
+</androidx.constraintlayout.widget.ConstraintLayout>

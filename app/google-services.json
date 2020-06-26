@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "111286096356",
+    "firebase_url": "https://onlineqari-83709.firebaseio.com",
+    "project_id": "onlineqari-83709",
+    "storage_bucket": "onlineqari-83709.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:111286096356:android:9aac5c2bd1643564c9f7f1",
+        "android_client_info": {
+          "package_name": "com.example.onlineqari"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "111286096356-2s392o4csgkm3cattqmmov2j1jl0hau5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDOR4_t98ZsVkUHi0kLRo8wragZrY0zXfk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "111286096356-2s392o4csgkm3cattqmmov2j1jl0hau5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

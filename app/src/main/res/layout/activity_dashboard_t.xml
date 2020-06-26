@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg"
+    tools:context=".DashboardT" >
+
+    <Button
+        android:id="@+id/button5"
+        android:layout_width="147dp"
+        android:layout_height="63dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="276dp"
+        android:background="#31673AB7"
+        android:fontFamily="@font/aclonica"
+        android:text="Manage Feedback"
+        android:textAlignment="center"
+        android:textColor="#009688"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/button4"
+        app:layout_constraintTop_toBottomOf="@+id/liveBtn"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="232dp"
+        android:layout_height="71dp"
+        android:fontFamily="@font/aclonica"
+        android:text="Online Qari"
+        android:textAlignment="center"
+        android:textColor="#009688"
+        android:textSize="35sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.43"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.056" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="381dp"
+        android:layout_height="54dp"
+        android:fontFamily="@font/aclonica"
+        android:text="Teacher's Dashboard"
+        android:textAlignment="center"
+        android:textColor="#009688"
+        android:textSize="25sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.466"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.221" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="147dp"
+        android:layout_height="63dp"
+        android:background="#31673AB7"
+        android:fontFamily="@font/aclonica"
+        android:text="Manage Lectures"
+        android:textAlignment="center"
+        android:textColor="#009688"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/liveBtn"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.452" />
+
+    <Button
+        android:id="@+id/liveBtn"
+        android:layout_width="147dp"
+        android:layout_height="63dp"
+        android:background="#31673AB7"
+        android:fontFamily="@font/aclonica"
+        android:onClick="goLive"
+        android:text="Go Live"
+        android:textAlignment="center"
+        android:textColor="#009688"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/button2"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.452" />
+
+    <Button
+        android:id="@+id/button4"
+        android:layout_width="147dp"
+        android:layout_height="63dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="276dp"
+        android:background="#31673AB7"
+        android:fontFamily="@font/aclonica"
+        android:text="Add Quiz"
+        android:textAlignment="center"
+        android:textColor="#009688"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/button5"
+        app:layout_constraintHorizontal_bias="0.705"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button2"
+        app:layout_constraintVertical_bias="0.0" />
+</androidx.constraintlayout.widget.ConstraintLayout>
