@@ -18,4 +18,9 @@ public class DashboardS extends AppCompatActivity {
         Intent intent = new Intent(this, JoinLiveSession.class);
         startActivity(intent);
     }
+
+    public void quizbtn(View view){
+        Intent intent= new Intent(this, TakeQuiz.class);
+        startActivity(intent);
+    }
 }

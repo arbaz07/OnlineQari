@@ -98,7 +98,7 @@
         android:layout_marginBottom="276dp"
         android:background="#31673AB7"
         android:fontFamily="@font/aclonica"
-        android:text="Add Quiz"
+        android:text="Hafiz"
         android:textAlignment="center"
         android:textColor="#009688"
         android:textSize="15sp"
