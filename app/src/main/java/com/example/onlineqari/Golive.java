@@ -32,7 +32,7 @@ import android.widget.TextView;
 
 public class Golive extends AppCompatActivity {
 
-    private static final String APPLICATION_ID = "a0yn9KECIrxWIXbqkRipQg";
+    private static final String APPLICATION_ID = "Zg1pLvIxGDvnxJzhFyEbfg";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

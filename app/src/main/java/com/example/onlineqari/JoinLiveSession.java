@@ -27,8 +27,8 @@ import android.widget.TextView;
 
 public class JoinLiveSession extends AppCompatActivity {
 
-    private static final String APPLICATION_ID = "a0yn9KECIrxWIXbqkRipQg";
-    private static final String API_KEY = "9V5JiWYjnSVx18Q6oRDjRa";
+    private static final String APPLICATION_ID = "Zg1pLvIxGDvnxJzhFyEbfg";
+    private static final String API_KEY = "FWkqkzvDuaoGw5Dfdsq74T";
 
 
     @Override
