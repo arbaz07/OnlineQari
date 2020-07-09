@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void teacherBtn(View view){
-        Intent intent = new Intent(this, LoginT.class);
+        Intent intent = new Intent(this, teacherR.class);
         startActivity(intent);
     }
 }
