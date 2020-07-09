@@ -56,16 +56,6 @@ public class LoginT extends AppCompatActivity {
                     return;
                 }
 
-                if (!email.equals("teacher@onlineqari.com")){
-                    emailT.setError("Enter Correct Mail");
-                    return;
-                }
-
-                if (!password.equals("666666")){
-                    passwordT.setError("Enter Correct Password !");
-                    return;
-                }
-
                 progressBar.setVisibility(View.VISIBLE);
 
 
@@ -90,6 +80,11 @@ public class LoginT extends AppCompatActivity {
                 });
             }
         });
+    }
+
+    public void signupT(View view){
+        Intent intent = new Intent(this, teacherR.class);
+        startActivity(intent);
     }
 
 }
