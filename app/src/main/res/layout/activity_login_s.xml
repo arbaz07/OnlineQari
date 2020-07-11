@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg"
+    android:background="@drawable/bg1"
     tools:context=".LoginS">
 
     <TextView
@@ -31,8 +31,8 @@
         android:fontFamily="@font/aclonica"
         android:hint="Email"
         android:inputType="textPersonName"
-        android:textColor="#FFFFFF"
-        android:textColorHint="#FFFDFD"
+        android:textColor="@color/common_google_signin_btn_text_light_pressed"
+        android:textColorHint="@color/common_google_signin_btn_text_light_pressed"
         android:textSize="13sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -50,8 +50,8 @@
         android:fontFamily="@font/aclonica"
         android:hint="Password"
         android:inputType="textPassword"
-        android:textColor="#FFFFFF"
-        android:textColorHint="#F8F6F6"
+        android:textColor="@color/common_google_signin_btn_text_light_pressed"
+        android:textColorHint="@color/common_google_signin_btn_text_light_pressed"
         android:textSize="13sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
