@@ -16,6 +16,7 @@
             android:id="@+id/questionstxt"
             android:layout_width="match_parent"
             android:layout_height="140dp"
+            android:fontFamily="sans-serif-medium"
             android:gravity="center_horizontal"
             android:padding="10dp"
             android:text="What Is this Question ?"
@@ -39,6 +40,7 @@
                 android:layout_marginEnd="10dp"
                 android:layout_weight="1"
                 android:background="#4CAF50"
+                android:fontFamily="sans-serif-medium"
                 android:padding="10dp"
                 android:text="Option 1"
                 android:textSize="20sp" />
@@ -97,14 +99,13 @@
         </LinearLayout>
 
 
-
-
         <TextView
             android:id="@+id/tinerTxt"
             android:layout_width="411dp"
             android:layout_height="49dp"
-            android:text="00  :  00"
+            android:fontFamily="sans-serif-medium"
             android:gravity="center"
+            android:text="00  :  00"
             android:textSize="25sp" />
 
 
