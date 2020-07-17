@@ -45,7 +45,7 @@
         android:layout_height="63dp"
         android:background="#31673AB7"
         android:fontFamily="sans-serif-medium"
-        android:text="Hafiz"
+        android:text="Manage Lecture"
         android:textAlignment="center"
         android:textColor="#009688"
         android:textSize="15sp"
@@ -74,22 +74,4 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.452" />
 
-    <Button
-        android:id="@+id/button4"
-        android:layout_width="147dp"
-        android:layout_height="63dp"
-        android:layout_marginTop="20dp"
-        android:background="#31673AB7"
-        android:fontFamily="sans-serif-medium"
-        android:text="Manage Lecture"
-        android:textAlignment="center"
-        android:textColor="#009688"
-        android:textSize="15sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.102"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button2"
-        app:layout_constraintVertical_bias="0.063" />
 </androidx.constraintlayout.widget.ConstraintLayout>

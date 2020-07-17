@@ -57,6 +57,11 @@ public class LoginS extends AppCompatActivity {
                     return;
                 }
 
+                if (email.length() <=5){
+                    emailS.setError("Email must contain 6 characters !");
+                    return;
+                }
+
                 progressBar.setVisibility(View.VISIBLE);
 
                 // Authenticate Student ..!!

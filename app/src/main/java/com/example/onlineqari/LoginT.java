@@ -52,7 +52,13 @@ public class LoginT extends AppCompatActivity {
                 }
 
                 if (password.length() <6){
-                    passwordT.setError("Password Must be >= 6 Characters.");
+                    passwordT.setError("Password Must be >= 6 Characters !");
+                    return;
+                }
+
+
+                if (email.length() <=5){
+                    emailT.setError("Email must contain 6 characters !");
                     return;
                 }
 

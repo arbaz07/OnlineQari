@@ -31,6 +31,7 @@
         android:fontFamily="@font/aclonica"
         android:hint="Email"
         android:inputType="textPersonName"
+        android:maxLength="20"
         android:textColor="@color/common_google_signin_btn_text_light_pressed"
         android:textColorHint="@color/common_google_signin_btn_text_light_pressed"
         android:textSize="13sp"
