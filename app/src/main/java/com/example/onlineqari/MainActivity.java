@@ -17,15 +17,36 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-    }
 
-    public void studentBtn(View view){
-        Intent intent = new Intent(this,RegisterS.class);
-        startActivity(intent);
-    }
+        final MediaPlayer mp ;
+        mp = MediaPlayer.create(this,R.raw.a);
 
-    public void teacherBtn(View view){
-        Intent intent = new Intent(this, teacherR.class);
-        startActivity(intent);
+        ImageView im1 =  findViewById(R.id.img1);
+        Animation animation = AnimationUtils.loadAnimation(this,R.anim.myanimation);
+        im1.startAnimation(animation);
+        final Intent i = new Intent(this, stR.class);
+
+        Thread timer = new Thread(){
+            public void run(){
+                try {
+                    mp.start();
+
+                    sleep(8000);
+                    mp.release();
+                }
+                catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                finally {
+                    startActivity(i);
+                    finish();
+                }
+            }
+        };
+        timer.start();
     }
 }
+
+
+
+

@@ -104,6 +104,11 @@ public class RegisterS extends AppCompatActivity {
                     return;
                 }
 
+                if (phone.length() <=10){
+                    sPhone.setError("Please Enter Valid Phone #");
+                    return;
+                }
+
                 if (TextUtils.isDigitsOnly(name)){
                     sFullname.setError("Please Enter Alphabet !");
                     return;

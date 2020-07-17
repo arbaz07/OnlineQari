@@ -93,7 +93,7 @@
         android:fontFamily="@font/aclonica"
         android:hint="Phone #"
         android:inputType="phone"
-        android:maxLength="15"
+        android:maxLength="11"
         android:textColor="@color/common_google_signin_btn_text_light_pressed"
         android:textColorHint="@color/common_google_signin_btn_text_light_pressed"
         android:textSize="13sp"

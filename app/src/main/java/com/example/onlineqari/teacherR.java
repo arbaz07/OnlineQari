@@ -103,6 +103,16 @@ public class teacherR extends AppCompatActivity {
                     return;
                 }
 
+                if (phone.length() <=10){
+                    tPhone.setError("Please Enter Valid Phone #");
+                    return;
+                }
+
+                if (education.length() <2){
+                    tEducation.setError("Please Enter Valid Education");
+                    return;
+                }
+
                 if (TextUtils.isDigitsOnly(name)){
                     tFullname.setError("Please Enter Alphabet !");
                     return;
