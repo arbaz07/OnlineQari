@@ -1,8 +1,10 @@
 package com.example.onlineqari;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -13,6 +15,8 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -91,6 +95,50 @@ public class LoginT extends AppCompatActivity {
     public void signupT(View view){
         Intent intent = new Intent(this, teacherR.class);
         startActivity(intent);
+    }
+
+    public void forgotPasswordT(View view){
+        final EditText resetMail = new EditText(view.getContext());
+        final AlertDialog.Builder passwordResetDialog = new AlertDialog.Builder(view.getContext());
+        passwordResetDialog.setTitle("Reset Password ?");
+        passwordResetDialog.setMessage("Enter Your Mail to Received Reset Link !");
+        passwordResetDialog.setView(resetMail);
+
+        passwordResetDialog.setPositiveButton("Send", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                // extract the mail and reset link
+
+                String mail = resetMail.getText().toString();
+
+                if (TextUtils.isEmpty(mail)){
+                    resetMail.setError("Please Enter Mail !");
+                    return;
+                }
+
+                tAuth.sendPasswordResetEmail(mail).addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Toast.makeText(LoginT.this, "Reset Link Send To Mail !", Toast.LENGTH_SHORT ).show();
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(LoginT.this, "Error ! Link is not Send " + e.getMessage(), Toast.LENGTH_SHORT).show();
+
+                    }
+                });
+            }
+        });
+
+        passwordResetDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                // close the dialog
+            }
+        });
+
+        passwordResetDialog.create().show();
     }
 
 }
