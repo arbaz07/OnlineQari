@@ -88,6 +88,7 @@ public class JoinLiveSession extends AppCompatActivity {
             float arDiff = screenAR - videoAR;
             mVideoSurface.setCropToParent(Math.abs(arDiff) < 0.2);
         }
+
     };
 
 

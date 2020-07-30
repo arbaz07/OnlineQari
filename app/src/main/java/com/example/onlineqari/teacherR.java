@@ -147,7 +147,7 @@ public class teacherR extends AppCompatActivity {
 
                             // FireStore !!!!
                             userId = fAuth.getCurrentUser().getUid();
-                            DocumentReference documentReference = fstore.collection("users").document(userId);
+                            DocumentReference documentReference = fstore.collection("Teachers").document(userId);
                             Map<String, Object> user = new HashMap<>();
                             user.put("Full Name", name);
                             user.put("Email", email);
