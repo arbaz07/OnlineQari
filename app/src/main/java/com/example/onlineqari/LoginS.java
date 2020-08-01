@@ -21,12 +21,19 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 public class LoginS extends AppCompatActivity {
     EditText emailS,passwordS;
     Button signinS;
     ProgressBar progressBar;
     FirebaseAuth sAuth;
+    FirebaseFirestore fstore;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +46,7 @@ public class LoginS extends AppCompatActivity {
         progressBar = findViewById(R.id.progressBarS);
 
         sAuth = FirebaseAuth.getInstance();
+        fstore = FirebaseFirestore.getInstance();
 
         signinS.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -68,23 +76,49 @@ public class LoginS extends AppCompatActivity {
 
                 progressBar.setVisibility(View.VISIBLE);
 
-                // Authenticate Student ..!!
-
-                sAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                final CollectionReference collectionReferenceT = fstore.collection("users");
+                Query query = collectionReferenceT.whereEqualTo("Email", email);
+                query.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()){
-                            Toast.makeText(LoginS.this, "Logged In Successfully !", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(getApplicationContext(), DashboardS.class));
-                            emailS.setText(null);
-                            passwordS.setText(null);
-                            progressBar.setVisibility(View.GONE);
-                        } else {
-                            Toast.makeText(LoginS.this, "Error Occur !" + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-                            progressBar.setVisibility(View.GONE);
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                String email = document.getString("Email");
+                                String password = document.getString("Password");
+                                sAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<AuthResult> task) {
+                                        String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+                                        collectionReferenceT.document(uid).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                                            @Override
+                                            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                                                DocumentSnapshot document = task.getResult();
+                                                String type = document.getString("Type");
+                                                if (task.isSuccessful() && type.equals("student")){
+                                                    startActivity(new Intent(LoginS.this,DashboardS.class));
+                                                    emailS.setText(null);
+                                                    passwordS.setText(null);
+                                                    progressBar.setVisibility(View.GONE);
+                                                }else {
+                                                    Toast.makeText(LoginS.this, "Login Invalid ! You are not a Student", Toast.LENGTH_SHORT).show();
+                                                    emailS.setText(null);
+                                                    passwordS.setText(null);
+                                                    progressBar.setVisibility(View.GONE);
+                                                }
+
+
+                                            }
+                                        });
+                                    }
+                                });
+                            }
                         }
                     }
                 });
+
+                // Authenticate Student ..!!
+
+
 
 
             }

@@ -62,6 +62,7 @@ public class teacherR extends AppCompatActivity {
                 final String password = tPassword.getText().toString().trim();
                 final String phone = tPhone.getText().toString().trim();
                 final String education = tEducation.getText().toString().trim();
+                final String type = "teacher";
 
                 if (TextUtils.isEmpty(name)){
                     tFullname.setError("Name Required !");
@@ -147,13 +148,14 @@ public class teacherR extends AppCompatActivity {
 
                             // FireStore !!!!
                             userId = fAuth.getCurrentUser().getUid();
-                            DocumentReference documentReference = fstore.collection("Teachers").document(userId);
+                            DocumentReference documentReference = fstore.collection("users").document(userId);
                             Map<String, Object> user = new HashMap<>();
                             user.put("Full Name", name);
                             user.put("Email", email);
                             user.put("Phone #", phone);
                             user.put("Education", education);
                             user.put("Password", password);
+                            user.put("Type", type);
 
                             documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override

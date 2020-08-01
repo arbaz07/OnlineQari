@@ -1,6 +1,7 @@
 package com.example.onlineqari;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -20,12 +21,27 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class LoginT extends AppCompatActivity {
     EditText emailT,passwordT;
     Button signinT;
     ProgressBar progressBar;
     FirebaseAuth tAuth;
+    FirebaseFirestore fstore;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,14 +52,16 @@ public class LoginT extends AppCompatActivity {
         passwordT = findViewById(R.id.teacherPassword);
         signinT = findViewById(R.id.signinBtnT);
         progressBar = findViewById(R.id.progressBarT);
+        final String type;
 
         tAuth = FirebaseAuth.getInstance();
+        fstore = FirebaseFirestore.getInstance();
 
         signinT.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String email = emailT.getText().toString().trim();
-                String password = passwordT.getText().toString().trim();
+                final String email = emailT.getText().toString().trim();
+                final String password = passwordT.getText().toString().trim();
 
                 if (TextUtils.isEmpty(email)){
                     emailT.setError("Email Must Required !");
@@ -69,28 +87,56 @@ public class LoginT extends AppCompatActivity {
                 progressBar.setVisibility(View.VISIBLE);
 
 
+                final CollectionReference collectionReferenceT = fstore.collection("users");
+                Query query = collectionReferenceT.whereEqualTo("Email", email);
+                query.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                String email = document.getString("Email");
+                                String password = document.getString("Password");
+                                tAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<AuthResult> task) {
+                                        String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+                                        collectionReferenceT.document(uid).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                                            @Override
+                                            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                                                DocumentSnapshot document = task.getResult();
+                                                String type = document.getString("Type");
+                                                if (task.isSuccessful() && type.equals("teacher")){
+                                                    startActivity(new Intent(LoginT.this,DashboardT.class));
+                                                    emailT.setText(null);
+                                                    passwordT.setText(null);
+                                                    progressBar.setVisibility(View.GONE);
+                                                }else {
+                                                    Toast.makeText(LoginT.this, "Login Invalid ! You are not a Teacher", Toast.LENGTH_SHORT).show();
+                                                    emailT.setText(null);
+                                                    passwordT.setText(null);
+                                                    progressBar.setVisibility(View.GONE);
+                                                        }
+
+                                            }
+                                        });
+                                    }
+                                });
+                            }
+                        }
+                    }
+                });
+
 
                 // Authenticate Teacher
 
-                tAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()){
-                            Toast.makeText(LoginT.this, "Logged In Successfully !", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(getApplicationContext(), DashboardT.class));
-                            emailT.setText(null);
-                            passwordT.setText(null);
-                            progressBar.setVisibility(View.GONE);
-                        } else {
-                            Toast.makeText(LoginT.this, "Error !" + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-                            progressBar.setVisibility(View.GONE);
-                        }
 
-                    }
-                });
+
+
             }
         });
     }
+
+
 
     public void signupT(View view){
         Intent intent = new Intent(this, teacherR.class);

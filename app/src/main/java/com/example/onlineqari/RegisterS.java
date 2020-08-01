@@ -67,6 +67,7 @@ public class RegisterS extends AppCompatActivity {
                 final String email = sEmail.getText().toString().trim();
                 final String password = sPassword.getText().toString().trim();
                 final String phone = sPhone.getText().toString().trim();
+                final String type = "student";
 
 
                 if (TextUtils.isEmpty(name)){
@@ -133,12 +134,13 @@ public class RegisterS extends AppCompatActivity {
 
                             // FireStore !!!!
                             userId = fAuth.getCurrentUser().getUid();
-                            DocumentReference documentReference = fstore.collection("Students").document(userId);
+                            DocumentReference documentReference = fstore.collection("users").document(userId);
                             Map<String, Object> user = new HashMap<>();
                             user.put("Full Name", name);
                             user.put("Email", email);
                             user.put("Password", password);
                             user.put("Phone No.", phone);
+                            user.put("Type", type);
 
                             documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override
