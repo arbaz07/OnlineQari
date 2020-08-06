@@ -143,9 +143,6 @@ public class LoginS extends AppCompatActivity {
 
                 // Authenticate Student ..!!
 
-
-
-
             }
         });
     }

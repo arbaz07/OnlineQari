@@ -38,6 +38,7 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class LoginT extends AppCompatActivity {
@@ -152,11 +153,7 @@ public class LoginT extends AppCompatActivity {
                     }
                 });
 
-
                 // Authenticate Teacher
-
-
-
 
             }
         });
