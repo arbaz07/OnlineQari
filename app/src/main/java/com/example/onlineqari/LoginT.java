@@ -9,6 +9,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -21,7 +22,10 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
+import com.google.firebase.auth.FirebaseAuthInvalidUserException;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.SignInMethodQueryResult;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
@@ -87,6 +91,22 @@ public class LoginT extends AppCompatActivity {
                 progressBar.setVisibility(View.VISIBLE);
 
 
+                tAuth.fetchSignInMethodsForEmail(email).addOnCompleteListener(new OnCompleteListener<SignInMethodQueryResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<SignInMethodQueryResult> task) {
+                        boolean isNewUser = task.getResult().getSignInMethods().isEmpty();
+                        if (isNewUser){
+                            Toast.makeText(LoginT.this,"Please Create Account ! You are not a authenticated user.",Toast.LENGTH_SHORT).show();
+                            emailT.setText(null);
+                            passwordT.setText(null);
+                            progressBar.setVisibility(View.GONE);
+                        }else {
+                            Log.e("TAG", "User Of This App !");
+                        }
+                    }
+                });
+
+
                 final CollectionReference collectionReferenceT = fstore.collection("users");
                 Query query = collectionReferenceT.whereEqualTo("Email", email);
                 query.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -106,17 +126,23 @@ public class LoginT extends AppCompatActivity {
                                                 DocumentSnapshot document = task.getResult();
                                                 String type = document.getString("Type");
                                                 if (task.isSuccessful() && type.equals("teacher")){
-                                                    startActivity(new Intent(LoginT.this,DashboardT.class));
+                                                    Toast.makeText(LoginT.this,"SignIn Successfully",Toast.LENGTH_LONG).show();
+                                                    startActivity(new Intent(LoginT.this, DashboardT.class));
                                                     emailT.setText(null);
                                                     passwordT.setText(null);
                                                     progressBar.setVisibility(View.GONE);
-                                                }else {
-                                                    Toast.makeText(LoginT.this, "Login Invalid ! You are not a Teacher", Toast.LENGTH_SHORT).show();
+                                                }else if (type.equals("student")){
+                                                    Toast.makeText(LoginT.this, "Login Invalid, You are a Student !", Toast.LENGTH_LONG).show();
                                                     emailT.setText(null);
                                                     passwordT.setText(null);
                                                     progressBar.setVisibility(View.GONE);
-                                                        }
-
+                                                }else if (type.equals("admin")){
+                                                    Toast.makeText(LoginT.this,"SignIn Successfully",Toast.LENGTH_LONG).show();
+                                                    startActivity(new Intent(LoginT.this, DashboardT.class));
+                                                    emailT.setText(null);
+                                                    passwordT.setText(null);
+                                                    progressBar.setVisibility(View.GONE);
+                                                }
                                             }
                                         });
                                     }

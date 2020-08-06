@@ -8,6 +8,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -21,6 +22,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.SignInMethodQueryResult;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -76,6 +78,22 @@ public class LoginS extends AppCompatActivity {
 
                 progressBar.setVisibility(View.VISIBLE);
 
+                sAuth.fetchSignInMethodsForEmail(email).addOnCompleteListener(new OnCompleteListener<SignInMethodQueryResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<SignInMethodQueryResult> task) {
+                        boolean isNewUser = task.getResult().getSignInMethods().isEmpty();
+                        if (isNewUser){
+                            Toast.makeText(LoginS.this,"Please Create Account ! You are not a authenticated user.",Toast.LENGTH_SHORT).show();
+                            emailS.setText(null);
+                            passwordS.setText(null);
+                            progressBar.setVisibility(View.GONE);
+                        }else {
+                            Log.e("TAG", "User Of This App !");
+                        }
+                    }
+                });
+
+
                 final CollectionReference collectionReferenceT = fstore.collection("users");
                 Query query = collectionReferenceT.whereEqualTo("Email", email);
                 query.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -95,12 +113,19 @@ public class LoginS extends AppCompatActivity {
                                                 DocumentSnapshot document = task.getResult();
                                                 String type = document.getString("Type");
                                                 if (task.isSuccessful() && type.equals("student")){
+                                                    Toast.makeText(LoginS.this,"SignIn Successfully",Toast.LENGTH_LONG).show();
                                                     startActivity(new Intent(LoginS.this,DashboardS.class));
                                                     emailS.setText(null);
                                                     passwordS.setText(null);
                                                     progressBar.setVisibility(View.GONE);
-                                                }else {
-                                                    Toast.makeText(LoginS.this, "Login Invalid ! You are not a Student", Toast.LENGTH_SHORT).show();
+                                                }else if (type.equals("teacher")){
+                                                    Toast.makeText(LoginS.this, "Login Invalid ! You are a teacher ", Toast.LENGTH_SHORT).show();
+                                                    emailS.setText(null);
+                                                    passwordS.setText(null);
+                                                    progressBar.setVisibility(View.GONE);
+                                                }else if (type.equals("admin")){
+                                                    Toast.makeText(LoginS.this,"SignIn Successfully !",Toast.LENGTH_SHORT).show();
+                                                    startActivity(new Intent(LoginS.this, DashboardS.class));
                                                     emailS.setText(null);
                                                     passwordS.setText(null);
                                                     progressBar.setVisibility(View.GONE);
