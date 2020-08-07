@@ -1,9 +1,5 @@
 package com.example.onlineqari;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,8 +9,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -125,7 +124,7 @@ public class LoginS extends AppCompatActivity {
                                                     progressBar.setVisibility(View.GONE);
                                                 }else if (type.equals("admin")){
                                                     Toast.makeText(LoginS.this,"SignIn Successfully !",Toast.LENGTH_SHORT).show();
-                                                    startActivity(new Intent(LoginS.this, DashboardS.class));
+                                                    startActivity(new Intent(LoginS.this, AdminDashbord.class));
                                                     emailS.setText(null);
                                                     passwordS.setText(null);
                                                     progressBar.setVisibility(View.GONE);
