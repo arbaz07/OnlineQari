@@ -77,4 +77,23 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.69" />
 
+    <Button
+        android:id="@+id/uDelAdmin"
+        android:layout_width="258dp"
+        android:layout_height="66dp"
+        android:background="#31673AB7"
+        android:fontFamily="sans-serif-medium"
+        android:onClick="uDelA"
+        android:text="Delete User"
+        android:textAlignment="center"
+        android:textColor="#009688"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.86" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

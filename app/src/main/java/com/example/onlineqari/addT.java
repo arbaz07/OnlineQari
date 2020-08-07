@@ -32,7 +32,7 @@ public class addT extends AppCompatActivity {
     TextView tSignin;
     ProgressBar progressBar;
     FirebaseAuth fAuth;
-    FirebaseFirestore fstore;
+    FirebaseFirestore aTstore;
     String userId;
 
     @Override
@@ -50,7 +50,7 @@ public class addT extends AppCompatActivity {
         tEducation = findViewById(R.id.teacherEducationR);
 
         fAuth = FirebaseAuth.getInstance();
-        fstore = FirebaseFirestore.getInstance();
+        aTstore = FirebaseFirestore.getInstance();
 
         tSignupBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -146,7 +146,7 @@ public class addT extends AppCompatActivity {
 
                             // FireStore !!!!
                             userId = fAuth.getCurrentUser().getUid();
-                            DocumentReference documentReference = fstore.collection("users").document(userId);
+                            DocumentReference documentReference = aTstore.collection("users").document(userId);
                             Map<String, Object> user = new HashMap<>();
                             user.put("Full Name", name);
                             user.put("Email", email);

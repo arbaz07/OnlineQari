@@ -12,6 +12,7 @@ public class AdminDashbord extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_dashbord);
+
     }
 
     public void sAddBtn(View view){
@@ -20,6 +21,11 @@ public class AdminDashbord extends AppCompatActivity {
     }
     public void tAddBtn(View view){
         Intent intent = new Intent(this, addT.class);
+        startActivity(intent);
+    }
+
+    public void uDelA(View view){
+        Intent intent = new Intent(this, delU.class);
         startActivity(intent);
     }
 }

@@ -32,7 +32,7 @@ public class addS extends AppCompatActivity {
     Button aSignupBtn;
     ProgressBar progressBar;
     FirebaseAuth aAuth;
-    FirebaseFirestore fstore;
+    FirebaseFirestore astore;
     String userId;
 
     @Override
@@ -48,7 +48,7 @@ public class addS extends AppCompatActivity {
         aPhone = findViewById(R.id.studentPhoneA);
 
         aAuth = FirebaseAuth.getInstance();
-        fstore = FirebaseFirestore.getInstance();
+        astore = FirebaseFirestore.getInstance();
 
         aSignupBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -120,11 +120,11 @@ public class addS extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()){
-                            Toast.makeText(addS.this, "User Created !", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(addS.this, "Student Create Successfully !", Toast.LENGTH_SHORT).show();
 
                             // FireStore !!!!
                             userId = aAuth.getCurrentUser().getUid();
-                            DocumentReference documentReference = fstore.collection("users").document(userId);
+                            DocumentReference documentReference = astore.collection("users").document(userId);
                             Map<String, Object> user = new HashMap<>();
                             user.put("Full Name", name);
                             user.put("Email", email);
