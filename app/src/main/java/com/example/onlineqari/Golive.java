@@ -1,7 +1,6 @@
 package com.example.onlineqari;
 
-import androidx.appcompat.app.AppCompatActivity;
-
+import android.Manifest;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
@@ -10,29 +9,26 @@ import android.content.pm.PackageManager;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.SurfaceView;
+import android.view.View;
+import android.view.WindowManager;
+import android.widget.Button;
+import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.app.NotificationCompat;
 
 import com.bambuser.broadcaster.BroadcastStatus;
 import com.bambuser.broadcaster.Broadcaster;
 import com.bambuser.broadcaster.CameraError;
 import com.bambuser.broadcaster.ConnectionError;
 
-import android.util.Log;
-import android.view.View;
-import android.view.WindowManager;
-
-import android.Manifest;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.app.NotificationCompat;
-
-import android.view.SurfaceView;
-import android.widget.Button;
-import android.widget.TextView;
-
 
 public class Golive extends AppCompatActivity {
 
-    private static final String APPLICATION_ID = "ep38gXubdzE95Wf6mnEZ3A";
+    private static final String APPLICATION_ID = "1RgsvdzzZ3hnnMEK0cZagA";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

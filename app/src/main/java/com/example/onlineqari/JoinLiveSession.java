@@ -1,34 +1,34 @@
 package com.example.onlineqari;
 
+import android.graphics.Point;
+import android.os.Bundle;
+import android.view.Display;
+import android.view.MotionEvent;
+import android.view.View;
+import android.widget.MediaController;
+import android.widget.TextView;
+
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.bambuser.broadcaster.SurfaceViewWithAutoAR;
 import com.bambuser.broadcaster.BroadcastPlayer;
 import com.bambuser.broadcaster.PlayerState;
+import com.bambuser.broadcaster.SurfaceViewWithAutoAR;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
+
 import java.io.IOException;
+
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
-import android.graphics.Point;
-import android.view.Display;
-
-import android.widget.MediaController;
-import android.view.MotionEvent;
-
-import android.os.Bundle;
-import android.view.View;
-import android.widget.TextView;
-
 public class JoinLiveSession extends AppCompatActivity {
 
-    private static final String APPLICATION_ID = "ep38gXubdzE95Wf6mnEZ3A";
-    private static final String API_KEY = "Jg79Yu7YNA5nmCoygpSEis";
+    private static final String APPLICATION_ID = "1RgsvdzzZ3hnnMEK0cZagA";
+    private static final String API_KEY = "Uyur5YukdE4PHsXa296Gom";
 
 
     @Override
